@@ -161,7 +161,7 @@ background: white;
 }
 
 /* PROJECTS */
-.projects-grid {
+.bussiness-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
@@ -169,7 +169,7 @@ background: white;
   margin: 40px auto 0;
 }
 
-.project-card {
+.bussiness-card {
   background: white;
   padding: 24px;
   border-radius: 16px;
@@ -177,34 +177,34 @@ background: white;
   transition: transform .3s ease;
 }
 
-.project-card:hover {
+.bussiness-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 
-.project-card h3 {
+.bussiness-card h3 {
   margin-bottom: 12px;
   font-size: 1.25rem;
 }
 
-.project-card p {
+.bussiness-card p {
   margin-bottom: 12px;
   color: #555;
   transition: transform 0.3s ease;
 }
 
-.project-card p:hover {
+.bussiness-card p:hover {
   transform: translateY(-2px);
 }
 
-.project-card a {
+.bussiness-card a {
   text-decoration: none;
   color: #0077ff;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.project-card a:hover {
+.bussiness-card a:hover {
   color: #0056cc;
 }
 
@@ -356,19 +356,26 @@ a:hover .red-circle, .social-btn:hover .red-circle {
 
 .polaroid-card {
   background: white;
-  padding: 15px 15px 40px 15px; /* Padding bawah lebih besar untuk gaya polaroid */
+  padding: 15px 15px 40px 15px;
   width: 300px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayang supaya nampak timbul */
-  transform: rotate(-2deg); /* Sengetkan sikit supaya nampak macam dalam buku */
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: rotate(-2deg);
+  /* Kita tukar transition jadi lebih 'bouncy' sikit */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: inline-block;
   margin: 20px;
+  position: relative; /* Wajib ada untuk washi tape */
+  z-index: 5;
 }
 
 .polaroid-card:hover {
-  transform: rotate(0deg) scale(1.05); /* Jadi tegak balik bila hover */
+  /* Kita tambah translateY supaya dia melompat naik sikit */
+  transform: rotate(0deg) scale(1.1) translateY(-15px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  z-index: 100; /* Supaya dia duduk atas element lain */
 }
 
+/* KEKALKAN GAYA WASHI TAPE AWAK */
 .polaroid-card::before {
   content: "";
   position: absolute;
@@ -377,8 +384,9 @@ a:hover .red-circle, .social-btn:hover .red-circle {
   transform: translateX(-50%);
   width: 80px;
   height: 30px;
-  background: rgba(255, 255, 150, 0.5); /* Warna washi tape */
+  background: rgba(255, 255, 150, 0.5); 
   border: 1px solid rgba(0,0,0,0.05);
+  z-index: 2;
 }
 
 .polaroid-image img {
@@ -388,13 +396,14 @@ a:hover .red-circle, .social-btn:hover .red-circle {
 }
 
 .polaroid-caption {
-  font-family: 'Courier New', Courier, monospace; /* Font mesin taip/tulis tangan */
+  font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
   margin-top: 15px;
   color: #333;
+  text-align: center; /* Bagi cantik sikit kat tengah */
 }
 
-.projects-container {
+.bussiness-container {
   display: flex;
   flex-wrap: wrap; /* Supaya kalau banyak, dia turun bawah automatik */
   justify-content: center; /* Letak kat tengah skrin */
@@ -423,7 +432,54 @@ a:hover .red-circle, .social-btn:hover .red-circle {
   border-radius: 4px;
   font-weight: bold;
 }
+/* VIDEO */
+/* TikTok Showcase Styling */
+/* Stacked Carousel Styling */
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin: 40px 0;
+}
 
+.stack-container {
+    position: relative;
+    height: 400px;
+    width: 800px; /* Adjust based on screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-card {
+    position: absolute;
+    width: 200px;
+    height: 350px;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Susunan Posisi Kad */
+.stack-1 { transform: translateX(-280px) scale(0.7); z-index: 1; opacity: 0.5; }
+.stack-2 { transform: translateX(-160px) scale(0.85); z-index: 2; opacity: 0.8; }
+.stack-3.active { transform: translateX(0) scale(1.1); z-index: 10; opacity: 1; border: 4px solid #fff; }
+.stack-4 { transform: translateX(160px) scale(0.85); z-index: 2; opacity: 0.8; }
+.stack-5 { transform: translateX(280px) scale(0.7); z-index: 1; opacity: 0.5; }
+
+/* Buttons & Profile */
+.btn-follow { background: #0095f6; color: #fff; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+.share-btn { background: #fff; border: 1px solid #ddd; padding: 12px 20px; border-radius: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; }
 /* Responsive */
 @media (max-width: 768px) {
 
@@ -450,4 +506,47 @@ a:hover .red-circle, .social-btn:hover .red-circle {
   p {
     font-size: 0.95rem;
   }
+}
+
+.nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Jadi bulat */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1); /* Efek kaca */
+    backdrop-filter: blur(10px); /* Blur belakang butang */
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Bila Hover (Lalu Kursor) */
+.nav-btn:hover {
+    background: white;
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3);
+}
+
+/* Bila Klik */
+.nav-btn:active {
+    transform: scale(0.9);
+}
+
+/* Posisi butang supaya tak kacau video */
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Butang kiri & kanan video */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
 }
